@@ -12,3 +12,14 @@
   padding: 100px;
   margin: 50px 16px;
 }
+
+.LoginPageLabel {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.LoginPageInputBox {
+  width: 100%;
+  height: 20px;
+}

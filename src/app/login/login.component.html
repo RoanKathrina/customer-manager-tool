@@ -2,5 +2,15 @@
   <div class="LoginPageDiv">
     <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' style='height: 150px'>
     <h1 style="color: white">Customer Manager Tool</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label class="LoginPageLabel">Username:</label>
+      <br/>
+      <input type="text" class="LoginPageInputBox" formControlName="username">
+      <br/>
+      <br/>
+      <label class="LoginPageLabel">Password:</label>
+      <br/>
+      <input type="password" class="LoginPageInputBox" formControlName="password">
+    </form>
   </div>
 </div>
