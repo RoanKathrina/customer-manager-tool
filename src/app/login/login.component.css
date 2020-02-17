@@ -23,3 +23,10 @@
   width: 100%;
   height: 20px;
 }
+
+.LoginPageButton {
+  width: 50%;
+  height: 35px;
+  font-size: 24px;
+  background-color: lightskyblue;
+}
