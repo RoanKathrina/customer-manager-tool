@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import members from '../../json/members.json';
+
+import membersJSONFile from '../../json/members.json';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,9 @@ export class LoginComponent implements OnInit{
 
   ngOnInit() {
     this.initForm();
+    if (window.sessionStorage.getItem('members') === null) {
+      window.sessionStorage.setItem('members', JSON.stringify(membersJSONFile));
+    }
   }
 
   initForm() {
@@ -34,16 +38,17 @@ export class LoginComponent implements OnInit{
     const username = this.loginForm.get('username').value;
     const password = this.loginForm.get('password').value;
 
-    if(username === null) {
+    if(username === null || username === '') {
       window.alert('Error: Kindly input Username.');
       return;
     }
 
-    if(password === null) {
+    if(password === null || password === '') {
       window.alert('Error: Kindly input Password.');
       return;
     }
 
+    const members = JSON.parse(window.sessionStorage.getItem('members'));
     let memberFlg = members.members.find(item => item.username === username && item.password === password);
     
     if(memberFlg === undefined ) {
