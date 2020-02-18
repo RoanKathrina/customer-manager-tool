@@ -1,0 +1,28 @@
+<div class="SignupPage">
+  <div class="SignupPageDiv">
+    <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' class="SignupPageImage">
+    <h1 class="SignupPageH1">Customer Manager Tool</h1>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <label class="SignupPageLabel">Username:</label>
+      <br/>
+      <input type="text" class="SignupPageInputBox" formControlName="username">
+      <br/>
+      <br/>
+      <label class="SignupPageLabel">Password:</label>
+      <br/>
+      <input type="password" class="SignupPageInputBox" formControlName="password">
+      <br/>
+      <br/>
+      <label class="SignupPageLabel">Confirm Password:</label>
+      <br>
+      <input type="password" class="SignupPageInputBox" formControlName="confirmPassword">
+      <br/>
+      <br/>
+      <button type="submit" class="SignupPageButton">SIGN UP</button>
+      <br/>
+      <br/>
+      <p class="SignupPageParagraph">Already a member?</p>
+      <button type="button" class="SignupPageButton" (click)="goToLoginPage()">LOGIN</button>
+    </form>
+  </div>
+</div>

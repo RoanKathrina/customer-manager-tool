@@ -1,0 +1,36 @@
+{
+  "members": [
+    {
+      "username": "ted_james",
+      "password": "pass1234"
+    },
+    {
+      "username": "mich_thomson",
+      "password": "pass1234"
+    },
+    {
+      "username": "zed_bishop",
+      "password": "pass1234"
+    },
+    {
+      "username": "tina_adams",
+      "password": "pass1234"
+    },
+    {
+      "username": "igor_minar",
+      "password": "pass1234"
+    },
+    {
+      "username": "brad_green",
+      "password": "pass1234"
+    },
+    {
+      "username": "misko_hevery",
+      "password": "pass1234"
+    },
+    {
+      "username": "heedy_wahlin",
+      "password": "pass1234"
+    }
+  ]
+}
