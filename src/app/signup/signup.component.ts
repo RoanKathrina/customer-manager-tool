@@ -19,13 +19,19 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     this.initForm();
-    try{
-      const membersTemp = window.sessionStorage.getItem('members');
-    } catch(err) {
+    if(window.sessionStorage.getItem('members') === null) {
       console.log('HERE');
       window.sessionStorage.clear();
       window.sessionStorage.setItem('members', JSON.stringify(membersJSONFile));
     }
+
+    // try{
+    //   const membersTemp = window.sessionStorage.getItem('members');
+    // } catch(err) {
+    //   console.log('HERE');
+    //   window.sessionStorage.clear();
+    //   window.sessionStorage.setItem('members', JSON.stringify(membersJSONFile));
+    // }
   }
 
   initForm() {
