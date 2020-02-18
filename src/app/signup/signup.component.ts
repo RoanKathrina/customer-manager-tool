@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import members from '../../json/members.json';
+import membersJSONFile from '../../json/members.json';
 
 @Component({
   selector: 'app-signup',
@@ -12,10 +13,17 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
-  constructor() { }
+  constructor(private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.initForm();
+    try{
+      const membersTemp = window.sessionStorage.getItem('members');
+    } catch(err) {
+      window.sessionStorage.clear();
+      window.sessionStorage.setItem('members', JSON.stringify(membersJSONFile));
+    }
   }
 
   initForm() {
@@ -30,7 +38,7 @@ export class SignupComponent implements OnInit {
     // Check Usernamee
     // Check Password
     // Check Confirm password
-
+    console.log(JSON.parse(window.sessionStorage.getItem('members')));
     const username = this.signupForm.get('username').value;
     const password = this.signupForm.get('password').value;
     const confirmPassword = this.signupForm.get('confirmPassword').value;
@@ -60,12 +68,21 @@ export class SignupComponent implements OnInit {
           // If no, add the Username, and the password
           // If yes, prompt an Error Message -> exit
         // Add the Username, and Password in members.json file
+        const members = JSON.parse(window.sessionStorage.getItem('members'));
         let memberFlg = members.members.find(item => item.username === username);
         if(memberFlg === undefined) {
           // Add the new member in the members.json file
+          const memberJSON = {
+            "username": username,
+            "password": password
+          }
+          members.members.push(memberJSON);
+          window.sessionStorage.setItem('members', JSON.stringify(members));
+          this.signupForm.reset();
+          this.router.navigate(['../customer-page'], {relativeTo: this.route})
         }
         else {
-          window.prompt('Error: New member is already added in the Customer Management Tool.')
+          window.alert('Error: New member is already added in the Customer Management Tool.')
           return;
         }
       }
