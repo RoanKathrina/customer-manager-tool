@@ -51,22 +51,22 @@ export class SignupComponent implements OnInit {
     const password = this.signupForm.get('password').value;
     const confirmPassword = this.signupForm.get('confirmPassword').value;
 
-    if(username === null) {
+    if(username === null || username === '') {
       window.alert('Error: Kindly input Username.');
       return;
     }
 
-    else if (username !== null && password === null) {
+    else if ((username !== null || username !== '') && (password === null || password === '')) {
       window.alert('Error: Kindly input Password.');
       return;
     }
 
-    else if (username !== null && password !== null && confirmPassword === null) {
+    else if ((username !== null || username !== '') && (password !== null || password !== '') && (confirmPassword === null || confirmPassword === '')) {
       window.alert('Error: Kindly input Confirm Password.');
       return;
     }
 
-    else if(username !== null && password !== null && confirmPassword !== null) {
+    else if((username !== null || username !== '') && (password !== null || password !== '') && (confirmPassword !== null || confirmPassword !== '')) {
       if(password !== confirmPassword) {
         window.alert('Error: Password, and Confirm Password did not match.')
         return;
