@@ -45,12 +45,12 @@
         <th style="font-size: 18px; background-color: blue; color: white; height: 50px">ADDRESS</th>
       </tr>
       <tr *ngFor="let customer of customers.customers">
-        <td [style.background-color]={'customer.gender' === 'female' ? 'red': 'blue'}>
+        <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
           <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-left: 12px; margin-top: 2px">
         </td>
-        <td style="text-align: center; font-size: 24px; font-weight: bold">{{ customer.first_name }}</td>
-        <td style="text-align: center; font-size: 24px; font-weight: bold">{{ customer.last_name }}</td>
-        <td style="text-align: center; font-size: 24px; font-weight: bold">{{ customer.address}}</td>
+        <td style="text-align: center; font-size: 24px; font-weight: bold; color: black"  [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.first_name }}</td>
+        <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.last_name }}</td>
+        <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.address}}</td>
       </tr>
 
     </table>

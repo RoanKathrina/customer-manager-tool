@@ -38,7 +38,7 @@
 
   <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; display: grid; grid-template-columns: auto auto auto; grid-row-gap: 20px">
     <ng-container *ngFor="let customer of customers.customers">
-      <div style="background-color: white; width: 300px; height: 200px; border-style: solid; border-color: black;">
+      <div style="width: 300px; height: 200px; border-style: solid; border-color: black;" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
         <div style="background-color: blue; width: 300px; height: 60px; position: absolute">
           <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
         </div>
