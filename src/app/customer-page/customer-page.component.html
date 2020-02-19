@@ -1,11 +1,53 @@
 <div class="CustomerPage">
   <div class="CustomerPageHeader">
-    <div style="display: inline-flex">
-      <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' style='height: 100px'>
-      <h1 style="color: white; height: 10px">Customer Manager Tool</h1>
-    </div>
-    <div>
-      <h1 style="color: white">Log Out</h1>
+    <div style="width: 1200px; height: 100px; justify-content: space-between; display: inline-flex; position: absolute; left: 20%">
+      <div style="display: inline-flex">
+        <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' style='height: 100px'>
+        <h1 style="color: white; height: 10px; font-weight: bold; font-size: 42px; text-align-last: center">Customer Manager Tool</h1>
+      </div>
+      <div style="display: inline-flex; justify-content: space-evenly; width: 500px">
+        <h1 style="color: white; font-weight: bold; margin-top: 30px">Customers</h1>
+        <h1 style="color: white; font-weight: bold; margin-top: 30px">Log Out</h1>
+      </div>
     </div>
   </div>
+
+  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 20px">
+    <div style="display: inline-flex">
+      <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 150px">
+      <h1 style="font-size: 42px; margin-top: 50px;">Customers</h1>
+    </div>
+  </div>
+
+  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 180px">
+    <div style="display: inline-flex; width: 210px; justify-content: space-between">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7w8Dp4tuMoMcON2eYOfcXd0bGs-RNQ66vL_eRV8S_jsrCQaJCyw&s" style="height: 50px; margin-top: 12px">
+      <h1 style="text-align-last: center">Card View</h1>
+    </div>
+
+    <div style="display: inline-flex; width: 200px; justify-content: space-between; margin-left: 30px">
+      <img src="https://static.thenounproject.com/png/424383-200.png" style="height: 50px; margin-top: 12px">
+      <h1 style="text-align-last: center">List View</h1>
+    </div>
+
+    <div style="display: inline-flex; width: 260px; justify-content: space-between; margin-left: 30px">
+      <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/plus-24-512.png" style="height: 50px; margin-top: 12px">
+      <h1 style="text-align-last: center">Add Customer</h1>
+    </div>
+  </div>
+
+  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; height: 2000px; display: flex; flex-direction: column; overflow: hidden">
+    <ng-container *ngFor="let customer of customers.customers">
+      <div style="background-color: white; width: 300px; height: 200px; border-style: solid; border-color: black; margin: 100px">
+        <div style="background-color: blue; width: 300px; height: 60px; position: absolute">
+          <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
+        </div>
+        <div style="display: inline-flex">
+          <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-top: 80px; margin-left: 5px">
+          <h1 style="color: black; margin-top: 100px">{{ customer.address}}</h1>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
 </div>

@@ -1,0 +1,24 @@
+{
+  "customers": [
+    {
+      "first_name": "Ted",
+      "last_name": "James",
+      "address": "Phoenix Arizona"
+    },
+    {
+      "first_name": "Mich",
+      "last_name": "Thomson",
+      "address": "Encinitas, California"
+    },
+    {
+      "first_name": "Zed",
+      "last_name": "Bishop",
+      "address": "Seattle, Washington"
+    },
+    {
+      "first_name": "Tina",
+      "last_name": "Adams",
+      "address": "Chandler, Arizona"
+    }
+  ]
+}
