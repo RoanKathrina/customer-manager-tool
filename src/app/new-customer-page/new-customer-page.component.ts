@@ -20,6 +20,12 @@ export class NewCustomerPageComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    if(window.sessionStorage.getItem('customers') !== null) {
+      this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
+    }
+    else {
+      window.sessionStorage.setItem('customers', JSON.stringify(this.customers));
+    }
   }
 
   initForm() {
@@ -40,7 +46,7 @@ export class NewCustomerPageComponent implements OnInit {
       const customerFlg = this.customers.customers.find(item => item.first_name === firstName && item.last_name === lastName);
       console.log(customerFlg);
       if(customerFlg !== undefined) {
-        window.prompt('Error: Customer is already added in the Customer Manager Tool.');
+        window.alert('Error: Customer is already added in the Customer Manager Tool.');
         return;
       }
       else {

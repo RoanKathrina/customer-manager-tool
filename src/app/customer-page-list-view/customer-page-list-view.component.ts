@@ -12,6 +12,12 @@ export class CustomerPageListViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(window.sessionStorage.getItem('customers') !== null) {
+      this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
+    }
+    else {
+      window.sessionStorage.setItem('customers', JSON.stringify(this.customers));
+    }
   }
 
 }
