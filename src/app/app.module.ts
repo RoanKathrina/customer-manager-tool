@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { SignupComponent } from './signup/signup.component';
 import { CustomerPageListViewComponent } from './customer-page-list-view/customer-page-list-view.component';
+import { NewCustomerPageComponent } from './new-customer-page/new-customer-page.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -23,7 +24,8 @@ import { CustomerPageListViewComponent } from './customer-page-list-view/custome
                   LoginComponent,
                   CustomerPageComponent,
                   SignupComponent,
-                  CustomerPageListViewComponent],
+                  CustomerPageListViewComponent,
+                  NewCustomerPageComponent],
   exports: [ RouterModule ],
   bootstrap:    [ AppComponent ]
 })

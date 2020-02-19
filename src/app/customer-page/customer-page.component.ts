@@ -16,6 +16,13 @@ export class CustomerPageComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if(window.sessionStorage.getItem('customers') === null) {
+      window.sessionStorage.setItem('customers', JSON.stringify(customers));
+    }
+
+    else {
+      this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
+    }
   }
 
   goToCustomersPage() {
