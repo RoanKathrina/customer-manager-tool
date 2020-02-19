@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import customers from '../../json/customers.json';
 
@@ -11,9 +12,13 @@ export class CustomerPageComponent implements OnInit {
 
   customers = customers;
 
-  constructor() { }
+  constructor(private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
+  goToCustomersPage() {
+    this.router.navigate(['../customer-page'], {relativeTo: this.route})
+  }
 }

@@ -1,6 +1,6 @@
 <div class="CustomerPage">
   <div class="CustomerPageHeader">
-    <div style="width: 1200px; height: 100px; justify-content: space-between; display: inline-flex; position: absolute; left: 20%">
+    <div style="width: 1200px; height: 100px; justify-content: space-between; display: inline-flex; position: absolute; left: 18%">
       <div style="display: inline-flex">
         <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' style='height: 100px'>
         <h1 style="color: white; height: 10px; font-weight: bold; font-size: 42px; text-align-last: center">Customer Manager Tool</h1>
@@ -12,14 +12,14 @@
     </div>
   </div>
 
-  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 20px">
+  <div style="width: 1200px; position: absolute; left: 18%; margin-top: 20px">
     <div style="display: inline-flex">
       <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 150px">
       <h1 style="font-size: 42px; margin-top: 50px;">Customers</h1>
     </div>
   </div>
 
-  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 180px">
+  <div style="width: 1200px; position: absolute; left: 18%; margin-top: 180px">
     <div style="display: inline-flex; width: 210px; justify-content: space-between">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7w8Dp4tuMoMcON2eYOfcXd0bGs-RNQ66vL_eRV8S_jsrCQaJCyw&s" style="height: 50px; margin-top: 12px">
       <h1 style="text-align-last: center"><a href="../customer-page" style="color: black">Card View</a></h1>
@@ -36,18 +36,24 @@
     </div>
   </div>
 
-  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; display: grid; grid-template-columns: auto auto auto; grid-row-gap: 20px">
-    <ng-container *ngFor="let customer of customers.customers">
-      <div style="background-color: white; width: 300px; height: 200px; border-style: solid; border-color: black;">
-        <div style="background-color: blue; width: 300px; height: 60px; position: absolute">
-          <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
-        </div>
-        <div style="display: inline-flex">
-          <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-top: 80px; margin-left: 5px">
-          <h1 style="color: black; margin-top: 80px; margin-left: 5px">{{ customer.address}}</h1>
-        </div>
-      </div>
-    </ng-container>
+  <div style="width: 1200px; position: absolute; left: 18%; margin-top: 275px; display: grid;">
+    <table class="CustomerPageTable">
+      <tr>
+        <th style="width: 150px; height: 50px; background-color: blue"></th>
+        <th style="font-size: 18px; background-color: blue; color: white; height: 50px">FIRST NAME</th>
+        <th style="font-size: 18px; background-color: blue; color: white; height: 50px">LAST NAME</th>
+        <th style="font-size: 18px; background-color: blue; color: white; height: 50px">ADDRESS</th>
+      </tr>
+      <tr *ngFor="let customer of customers.customers">
+        <td [style.background-color]={'customer.gender' === 'female' ? 'red': 'blue'}>
+          <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-left: 12px; margin-top: 2px">
+        </td>
+        <td style="text-align: center; font-size: 24px; font-weight: bold">{{ customer.first_name }}</td>
+        <td style="text-align: center; font-size: 24px; font-weight: bold">{{ customer.last_name }}</td>
+        <td style="text-align: center; font-size: 24px; font-weight: bold">{{ customer.address}}</td>
+      </tr>
+
+    </table>
   </div>
 
 </div>

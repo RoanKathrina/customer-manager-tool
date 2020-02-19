@@ -19,3 +19,12 @@ a:link {
 a:hover {
   text-decoration: underline; 
 }
+
+.CustomerPageTable {
+  border-collapse: collapse;
+  width: 100%
+}
+
+table, th, td {
+  border: 3px solid black;
+}

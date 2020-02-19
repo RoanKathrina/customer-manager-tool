@@ -3,42 +3,50 @@
     {
       "first_name": "Ted",
       "last_name": "James",
-      "address": "Phoenix Arizona"
+      "address": "Phoenix, Arizona",
+      "gender": "male"
     },
     {
       "first_name": "Mich",
       "last_name": "Thomson",
-      "address": "Encinitas, California"
+      "address": "Encinitas, California",
+      "gender": "female"
     },
     {
       "first_name": "Zed",
       "last_name": "Bishop",
-      "address": "Seattle, Washington"
+      "address": "Seattle, Washington",
+      "gender": "male"
     },
     {
       "first_name": "Tina",
       "last_name": "Adams",
-      "address": "Chandler, Arizona"
+      "address": "Chandler, Arizona",
+      "gender": "female"
     },
     {
       "first_name": "Igor",
       "last_name": "Minar",
-      "address": "Dallas, Texas"
+      "address": "Dallas, Texas",
+      "gender": "male"
     },
     {
       "first_name": "Brad",
       "last_name": "Green",
-      "address": "Orlando, Florida"
+      "address": "Orlando, Florida",
+      "gender": "male"
     },
     {
       "first_name": "Misko",
       "last_name": "Hevery",
-      "address": "Carey, North Carolina"
+      "address": "Carey, North Carolina",
+      "gender": "male"
     },
     {
       "first_name": "Heedy",
       "last_name": "Wahlin",
-      "address": "Anahelm, California"
+      "address": "Anahelm, California",
+      "gender": "female"
     }
   ]
 }
