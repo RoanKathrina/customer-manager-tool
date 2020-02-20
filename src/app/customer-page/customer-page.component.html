@@ -34,6 +34,11 @@
       <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/plus-24-512.png" style="height: 50px; margin-top: 12px">
       <h1 style="text-align-last: center"><a>Add Customer</a></h1>
     </div>
+
+    <div style="display: inline-flex; width: 260px; justify-content: space-between; margin-left: 30px; cursor: pointer" tappable (click)="setContainerToBeLoaded('editCustomer')">
+      <img src="https://simpleicon.com/wp-content/uploads/pencil.png" style="height: 50px; margin-top: 12px">
+      <h1 style="text-align-last: center"><a>Edit Customer</a></h1>
+    </div>
   </div>
 
   <div [ngSwitch]="containerToBeLoaded">
@@ -116,7 +121,7 @@
               <div style="width: 300px">
                 <h1 style="text-align: center; color: white">Last Name:</h1>
               </div>
-              <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="lastName" maxlength="5">
+              <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="lastName" maxlength="7">
             </div>
             <span *ngIf="!newCustomerForm.get('lastName').valid && newCustomerFormSubmitted" 
             style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Last Name.</span>
@@ -149,5 +154,85 @@
         </div>
       </div>
     </ng-template>
+
+    <ng-template [ngSwitchCase]="'editCustomer'">
+      <div style="position: relative; left: 18%;">
+        <div style="width: 1200px; left: 18%; margin-top: 275px; display: grid;">
+          <div style="background-color: blue; width: 80%; height: auto; margin: auto">
+            <form [formGroup]="editCustomerForm" (ngSubmit)="onUpdateCustomer()">
+
+              <div style="display: inline-flex; width: 500px; margin-left: 230px">
+                <div style="width: 300px; margin-top: 0px">
+                  <h1 style="text-align: center; color: white">First Name:</h1>
+                </div>
+                <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="firstName" maxlength="5">
+                <br />
+              </div>
+              <span *ngIf="!editCustomerForm.get('firstName').valid && editCustomerFormSubmitted" 
+              style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input First Name.</span>
+              
+              <div style="display: inline-flex; width: 500px; margin-left: 230px">
+                <div style="width: 300px">
+                  <h1 style="text-align: center; color: white">Last Name:</h1>
+                </div>
+                <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="lastName" maxlength="7">
+              </div>
+              <span *ngIf="!editCustomerForm.get('lastName').valid && editCustomerFormSubmitted" 
+              style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Last Name.</span>
+
+              <div style="display: inline-flex; width: 500px; margin-left: 230px">
+                <div style="width: 300px">
+                  <h1 style="text-align: center; color: white">Address:</h1>
+                </div>
+                <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="address" maxlength="20">
+              </div>
+              <span *ngIf="!editCustomerForm.get('address').valid && editCustomerFormSubmitted" 
+              style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Address.</span>
+
+              <div style="display: inline-flex; width: 500px; margin-left: 280px">
+                <h1 style="text-align: center; color: white">Gender:</h1>
+                <div style="display: inline-flex; width: 350px; margin-top: 10px">
+                  <input type="radio" style="width: 500px; height: 50px" value="male" formControlName="gender" />
+                  <h1 style="color: white; margin-top: 10px">Male</h1>        
+                  <input type="radio" style="width: 500px; height: 50px" value="female" formControlName="gender" />  
+                  <h1 style="color: white; margin-top: 10px">Female</h1>        
+                </div>
+              </div>
+              <span *ngIf="!editCustomerForm.get('gender').valid && editCustomerFormSubmitted" 
+              style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly select Gender.</span>
+
+              <br/>
+              <br/>
+              <button style="margin-left: 300px; width: 400px; height: 50px; font-size: 24px; font-weight: bold; margin-bottom: 20px" type="submit">UPDATE</button>
+            </form>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; width: 1200px; left: 18%; display: grid;">
+          <table class="CustomerPageTable">
+            <tr>
+              <th style="font-size: 18px; color: white; width: 150px; height: 50px; background-color: blue">EDIT</th>
+              <th style="font-size: 18px; color: white; width: 150px; height: 50px; background-color: blue">IMAGE</th>
+              <th style="font-size: 18px; background-color: blue; color: white; height: 50px">FIRST NAME</th>
+              <th style="font-size: 18px; background-color: blue; color: white; height: 50px">LAST NAME</th>
+              <th style="font-size: 18px; background-color: blue; color: white; height: 50px">ADDRESS</th>
+            </tr>
+            <tr *ngFor="let customer of customers.customers; let i = index">
+              <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+                <img src="https://simpleicon.com/wp-content/uploads/pencil.png" 
+                style="height: 60px; margin-top: 10px; cursor: pointer; margin-left: 50px" tappable (click)="editCustomer(customer, i)">
+              </td>
+              <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+                <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-left: 12px; margin-top: 2px">
+              </td>
+              <td style="text-align: center; font-size: 24px; font-weight: bold; color: black"  [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.first_name }}</td>
+              <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.last_name }}</td>
+              <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.address}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+
   </div>
 </div>

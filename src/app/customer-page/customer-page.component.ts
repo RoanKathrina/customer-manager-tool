@@ -15,6 +15,9 @@ export class CustomerPageComponent implements OnInit {
   containerToBeLoaded: string;
   newCustomerForm: FormGroup;
   newCustomerFormSubmitted: boolean = false;
+  editCustomerForm: FormGroup;
+  indexToBeUpdated = null;
+  editCustomerFormSubmitted: boolean = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute) { }
@@ -42,6 +45,13 @@ export class CustomerPageComponent implements OnInit {
 
   initForm() {
     this.newCustomerForm = new FormGroup({
+      'firstName': new FormControl(null, Validators.required),
+      'lastName': new FormControl(null, Validators.required),
+      'address': new FormControl(null, Validators.required),
+      'gender': new FormControl('', Validators.required)
+    })
+
+    this.editCustomerForm = new FormGroup({
       'firstName': new FormControl(null, Validators.required),
       'lastName': new FormControl(null, Validators.required),
       'address': new FormControl(null, Validators.required),
@@ -100,6 +110,75 @@ export class CustomerPageComponent implements OnInit {
       customers.customers.splice(customerIndx, 1);
       window.sessionStorage.setItem('customers', JSON.stringify(customers));
       this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
+    }
+  }
+
+  editCustomer(customer, position) {
+    // Set the First Name, Last Name, Address, and gender
+    this.indexToBeUpdated = position;
+    
+    const confirmMsgRes = window.confirm(`Warning: Are you sure you want to edit the details of Customer: ${customer.first_name} ${customer.last_name}?`);
+    if (confirmMsgRes == false) {
+      return;
+    } 
+    else {
+      this.editCustomerForm.patchValue({
+        'firstName': customer.first_name,
+        'lastName': customer.last_name,
+        'address': customer.address,
+        'gender': customer.gender
+      })
+    }
+  }
+
+  onUpdateCustomer() {
+    this.editCustomerFormSubmitted = true;
+    if (this.editCustomerForm.invalid === false) {
+      // Check if the First Name, and Last Name already exists in the sessionStorage
+      // If no:
+        // Update the customers
+      // If yes:
+        // Alert Error: Customer First Name Last Name already exists in Customer Manager Tool;
+        // return;
+
+      const customers = JSON.parse(window.sessionStorage.getItem('customers'));
+      const firstName = this.editCustomerForm.get('firstName').value;
+      const lastName = this.editCustomerForm.get('lastName').value;
+      let i = 0, customerFlg = false;
+
+      for(i = 0; i < customers.customers.length; i++) {
+        if(i == this.indexToBeUpdated) {
+          continue;
+        }
+        else {
+          if (customers.customers[i]['first_name'] === firstName && customers.customers[i]['last_name'] === lastName) {
+            customerFlg = true;
+            break;
+          }
+        }
+      }
+      if (customerFlg === false) {
+        const customerJSON = {
+          "first_name": firstName,
+          "last_name": lastName,
+          "address": this.editCustomerForm.get('address').value,
+          "gender": this.editCustomerForm.get('gender').value
+        }
+
+        customers.customers[this.indexToBeUpdated] = customerJSON;
+        this.customers = customers;
+        window.sessionStorage.setItem('customers', JSON.stringify(this.customers));
+        this.indexToBeUpdated = null;
+        this.editCustomerFormSubmitted = false;
+        this.editCustomerForm.reset();
+      }
+      else {
+        window.alert(`Error: Customer: ${firstName} ${lastName} already exists in the Customer Manager Tool Database.`)
+        return;
+      }
+    }
+    else {
+      return;
     }
   }
 }
