@@ -114,7 +114,7 @@
               <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="firstName" maxlength="5">
               <br />
             </div>
-            <span *ngIf="!newCustomerForm.get('firstName').valid && newCustomerFormSubmitted" 
+            <span *ngIf="(!newCustomerForm.get('firstName').valid && newCustomerForm.get('firstName').touched) || (!newCustomerForm.get('firstName').valid && newCustomerFormSubmitted)" 
             style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input First Name.</span>
             
             <div style="display: inline-flex; width: 500px; margin-left: 230px">
@@ -123,7 +123,7 @@
               </div>
               <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="lastName" maxlength="7">
             </div>
-            <span *ngIf="!newCustomerForm.get('lastName').valid && newCustomerFormSubmitted" 
+            <span *ngIf="(!newCustomerForm.get('lastName').valid && newCustomerForm.get('lastName').touched) || (!newCustomerForm.get('lastName').valid && newCustomerFormSubmitted)" 
             style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Last Name.</span>
 
             <div style="display: inline-flex; width: 500px; margin-left: 230px">
@@ -132,7 +132,7 @@
               </div>
               <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="address" maxlength="20">
             </div>
-            <span *ngIf="!newCustomerForm.get('address').valid && newCustomerFormSubmitted" 
+            <span *ngIf="(!newCustomerForm.get('address').valid && newCustomerForm.get('address').touched) || (!newCustomerForm.get('address').valid && newCustomerFormSubmitted)" 
             style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Address.</span>
 
             <div style="display: inline-flex; width: 500px; margin-left: 280px">
@@ -168,7 +168,7 @@
                 <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="firstName" maxlength="5">
                 <br />
               </div>
-              <span *ngIf="!editCustomerForm.get('firstName').valid && editCustomerFormSubmitted" 
+              <span *ngIf="(!editCustomerForm.get('firstName').valid && editCustomerForm.get('firstName').touched ) || (!editCustomerForm.get('firstName').valid && editCustomerFormSubmitted)" 
               style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input First Name.</span>
               
               <div style="display: inline-flex; width: 500px; margin-left: 230px">
@@ -177,7 +177,7 @@
                 </div>
                 <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="lastName" maxlength="7">
               </div>
-              <span *ngIf="!editCustomerForm.get('lastName').valid && editCustomerFormSubmitted" 
+              <span *ngIf="(!editCustomerForm.get('lastName').valid && editCustomerForm.get('lastName').touched) || (!editCustomerForm.get('lastName').valid && editCustomerFormSubmitted)" 
               style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Last Name.</span>
 
               <div style="display: inline-flex; width: 500px; margin-left: 230px">
@@ -186,7 +186,7 @@
                 </div>
                 <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="address" maxlength="20">
               </div>
-              <span *ngIf="!editCustomerForm.get('address').valid && editCustomerFormSubmitted" 
+              <span *ngIf="(!editCustomerForm.get('address').valid && editCustomerForm.get('address').touched ) || (!editCustomerForm.get('address').valid && editCustomerFormSubmitted)" 
               style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Address.</span>
 
               <div style="display: inline-flex; width: 500px; margin-left: 280px">

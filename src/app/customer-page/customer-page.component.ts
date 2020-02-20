@@ -168,9 +168,12 @@ export class CustomerPageComponent implements OnInit {
         customers.customers[this.indexToBeUpdated] = customerJSON;
         this.customers = customers;
         window.sessionStorage.setItem('customers', JSON.stringify(this.customers));
+  
         this.indexToBeUpdated = null;
         this.editCustomerFormSubmitted = false;
+        this.editCustomerForm.markAsUntouched();
         this.editCustomerForm.reset();
+        console.log(this.editCustomerForm)
       }
       else {
         window.alert(`Error: Customer: ${firstName} ${lastName} already exists in the Customer Manager Tool Database.`)
