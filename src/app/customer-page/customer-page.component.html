@@ -38,39 +38,62 @@
 
   <div [ngSwitch]="containerToBeLoaded">
     <ng-template [ngSwitchCase]="'cardView'">
-      <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; display: grid; grid-template-columns: auto auto auto; grid-row-gap: 20px">
-        <ng-container *ngFor="let customer of customers.customers">
-          <div style="width: 300px; height: 200px; border-style: solid; border-color: black; overflow: scroll" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
-            <div style="background-color: blue; width: 300px; height: 60px; position: absolute">
-              <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
+      <div *ngIf="customers.customers.length === 0">
+        <div style="width: 1200px; position: absolute; left: 20%; margin-top: 275px; text-align: center;">
+          <h1 style="color: red">Click + Add Customer to add new Customer.</h1>
+        </div>
+      </div>
+
+      <div *ngIf="customers.customers.length !== 0">
+        <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; display: grid; grid-template-columns: auto auto auto; grid-row-gap: 20px">
+          <ng-container *ngFor="let customer of customers.customers">
+            <div style="width: 300px; height: 200px; border-style: solid; border-color: black; overflow: scroll" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+              <div style="background-color: blue; width: 300px; height: 60px; position: absolute; display: flex; justify-content: space-between">
+                <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
+                <img src="https://www.iconsdb.com/icons/preview/white/cancel-xxl.png" 
+                style="height: 40px; margin-top: 10px; margin-right: 5px; cursor: pointer" tappable (click)="deleteCustomer(customer.first_name, customer.last_name)">
+              </div>
+              <div style="display: inline-flex">
+                <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-top: 80px; margin-left: 5px">
+                <h1 style="color: black; margin-top: 80px; margin-left: 5px">{{ customer.address}}</h1>
+              </div>
             </div>
-            <div style="display: inline-flex">
-              <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-top: 80px; margin-left: 5px">
-              <h1 style="color: black; margin-top: 80px; margin-left: 5px">{{ customer.address}}</h1>
-            </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
       </div>
     </ng-template>
 
     <ng-template [ngSwitchCase]="'listView'">
-      <div style="width: 1200px; position: absolute; left: 18%; margin-top: 275px; display: grid;">
-        <table class="CustomerPageTable">
-          <tr>
-            <th style="width: 150px; height: 50px; background-color: blue"></th>
-            <th style="font-size: 18px; background-color: blue; color: white; height: 50px">FIRST NAME</th>
-            <th style="font-size: 18px; background-color: blue; color: white; height: 50px">LAST NAME</th>
-            <th style="font-size: 18px; background-color: blue; color: white; height: 50px">ADDRESS</th>
-          </tr>
-          <tr *ngFor="let customer of customers.customers">
-            <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
-              <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-left: 12px; margin-top: 2px">
-            </td>
-            <td style="text-align: center; font-size: 24px; font-weight: bold; color: black"  [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.first_name }}</td>
-            <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.last_name }}</td>
-            <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.address}}</td>
-          </tr>
-        </table>
+      <div *ngIf="customers.customers.length === 0">
+        <div style="width: 1200px; position: absolute; left: 20%; margin-top: 275px; text-align: center">
+          <h1 style="color: red">Click + Add Customer to add new Customer.</h1>          
+        </div>
+      </div>
+
+      <div *ngIf="customers.customers.length !== 0">
+        <div style="width: 1200px; position: absolute; left: 18%; margin-top: 275px; display: grid;">
+          <table class="CustomerPageTable">
+            <tr>
+              <th style="font-size: 18px; color: white; width: 150px; height: 50px; background-color: blue">DELETE</th>
+              <th style="font-size: 18px; color: white; width: 150px; height: 50px; background-color: blue">IMAGE</th>
+              <th style="font-size: 18px; background-color: blue; color: white; height: 50px">FIRST NAME</th>
+              <th style="font-size: 18px; background-color: blue; color: white; height: 50px">LAST NAME</th>
+              <th style="font-size: 18px; background-color: blue; color: white; height: 50px">ADDRESS</th>
+            </tr>
+            <tr *ngFor="let customer of customers.customers">
+              <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+                <img src="https://www.pngjoy.com/pngl/47/1062318_close-icon-close-button-png-icon-transparent-png.png" 
+                style="height: 80px; margin-top: 10px; cursor: pointer; margin-left: 35px" tappable (click)="deleteCustomer(customer.first_name, customer.last_name)">
+              </td>
+              <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+                <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-left: 12px; margin-top: 2px">
+              </td>
+              <td style="text-align: center; font-size: 24px; font-weight: bold; color: black"  [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.first_name }}</td>
+              <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.last_name }}</td>
+              <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.address}}</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </ng-template>      
 

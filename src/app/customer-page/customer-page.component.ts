@@ -83,5 +83,23 @@ export class CustomerPageComponent implements OnInit {
   }
 
 
+  deleteCustomer(firstName: string, lastName: string) {
+    // Find the index of the customer to be deleted
+    // Delete the customer in the list
+    // Update sessionStorage with the current list
+    // Set containerToBeLoaded = 'cardView'
+    const confirmMsgRes = window.confirm(`Warning: Are you sure you like to delete: ${firstName} ${lastName}?`);
+    if(confirmMsgRes === false) {
+      return;
+    }
+    else {
+      const customers = JSON.parse(window.sessionStorage.getItem('customers'));
+      const customerIndx = customers.customers.findIndex(item => item.first_name === firstName && item.last_name === lastName);
+      console.log(customerIndx);
 
+      customers.customers.splice(customerIndx, 1);
+      window.sessionStorage.setItem('customers', JSON.stringify(customers));
+      this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
+    }
+  }
 }
