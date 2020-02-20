@@ -203,7 +203,8 @@
 
               <br/>
               <br/>
-              <button style="margin-left: 300px; width: 400px; height: 50px; font-size: 24px; font-weight: bold; margin-bottom: 20px" type="submit">UPDATE</button>
+              <button style="margin-left: 300px; width: 400px; height: 50px; font-size: 24px; font-weight: bold; margin-bottom: 20px" type="submit" 
+              [disabled]="!editCustomerForm.valid">UPDATE</button>
             </form>
           </div>
         </div>

@@ -52,10 +52,10 @@ export class CustomerPageComponent implements OnInit {
     })
 
     this.editCustomerForm = new FormGroup({
-      'firstName': new FormControl(null, Validators.required),
-      'lastName': new FormControl(null, Validators.required),
-      'address': new FormControl(null, Validators.required),
-      'gender': new FormControl('', Validators.required)
+      'firstName': new FormControl({value: null, disabled: true}, Validators.required),
+      'lastName': new FormControl({value: null, disabled: true}, Validators.required),
+      'address': new FormControl({value: null, disabled: true}, Validators.required),
+      'gender': new FormControl({value: '', disabled: true}, Validators.required)
     })
   }
 
@@ -128,19 +128,23 @@ export class CustomerPageComponent implements OnInit {
         'address': customer.address,
         'gender': customer.gender
       })
+      this.editCustomerForm.get('firstName').enable();      
+      this.editCustomerForm.get('lastName').enable();      
+      this.editCustomerForm.get('address').enable();      
+      this.editCustomerForm.get('gender').enable();
     }
   }
 
   onUpdateCustomer() {
     this.editCustomerFormSubmitted = true;
     if (this.editCustomerForm.invalid === false) {
+      // Set the form fields to enabled
       // Check if the First Name, and Last Name already exists in the sessionStorage
       // If no:
         // Update the customers
       // If yes:
         // Alert Error: Customer First Name Last Name already exists in Customer Manager Tool;
-        // return;
-
+        // return;      
       const customers = JSON.parse(window.sessionStorage.getItem('customers'));
       const firstName = this.editCustomerForm.get('firstName').value;
       const lastName = this.editCustomerForm.get('lastName').value;
@@ -173,6 +177,12 @@ export class CustomerPageComponent implements OnInit {
         this.editCustomerFormSubmitted = false;
         this.editCustomerForm.markAsUntouched();
         this.editCustomerForm.reset();
+
+        this.editCustomerForm.get('firstName').disable();
+        this.editCustomerForm.get('lastName').disable();
+        this.editCustomerForm.get('address').disable();
+        this.editCustomerForm.get('gender').disable();
+
         console.log(this.editCustomerForm)
       }
       else {
