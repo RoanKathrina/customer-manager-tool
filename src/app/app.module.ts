@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { SignupComponent } from './signup/signup.component';
-import { CustomerPageListViewComponent } from './customer-page-list-view/customer-page-list-view.component';
-import { NewCustomerPageComponent } from './new-customer-page/new-customer-page.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -23,9 +21,7 @@ import { NewCustomerPageComponent } from './new-customer-page/new-customer-page.
   declarations: [ AppComponent,
                   LoginComponent,
                   CustomerPageComponent,
-                  SignupComponent,
-                  CustomerPageListViewComponent,
-                  NewCustomerPageComponent],
+                  SignupComponent],
   exports: [ RouterModule ],
   bootstrap:    [ AppComponent ]
 })
