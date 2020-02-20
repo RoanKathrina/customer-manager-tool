@@ -20,34 +20,111 @@
   </div>
 
   <div style="width: 1200px; position: absolute; left: 20%; margin-top: 180px">
-    <div style="display: inline-flex; width: 210px; justify-content: space-between">
+    <div style="display: inline-flex; width: 210px; justify-content: space-between; cursor: pointer" tappable (click)="setContainerToBeLoaded('cardView')"> 
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7w8Dp4tuMoMcON2eYOfcXd0bGs-RNQ66vL_eRV8S_jsrCQaJCyw&s" style="height: 50px; margin-top: 12px">
-      <h1 style="text-align-last: center"><a href="../customer-page" style="color: black">Card View</a></h1>
+      <h1 style="text-align-last: center"><a>Card View</a></h1>
     </div>
 
-    <div style="display: inline-flex; width: 200px; justify-content: space-between; margin-left: 30px">
+    <div style="display: inline-flex; width: 200px; justify-content: space-between; margin-left: 30px; cursor: pointer" tappable (click)="setContainerToBeLoaded('listView')">
       <img src="https://static.thenounproject.com/png/424383-200.png" style="height: 50px; margin-top: 12px">
-      <h1 style="text-align-last: center"><a href="../customer-page-list-view" style="color: black">List View</a></h1>
+      <h1 style="text-align-last: center"><a>List View</a></h1>
     </div>
 
-    <div style="display: inline-flex; width: 260px; justify-content: space-between; margin-left: 30px">
+    <div style="display: inline-flex; width: 260px; justify-content: space-between; margin-left: 30px; cursor: pointer" tappable (click)="setContainerToBeLoaded('newCustomer')">
       <img src="https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/plus-24-512.png" style="height: 50px; margin-top: 12px">
-      <h1 style="text-align-last: center"><a href="../new-customer-page" style="color: black">Add Customer</a></h1>
+      <h1 style="text-align-last: center"><a>Add Customer</a></h1>
     </div>
   </div>
 
-  <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; display: grid; grid-template-columns: auto auto auto; grid-row-gap: 20px">
-    <ng-container *ngFor="let customer of customers.customers">
-      <div style="width: 300px; height: 200px; border-style: solid; border-color: black;" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
-        <div style="background-color: blue; width: 300px; height: 60px; position: absolute">
-          <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
-        </div>
-        <div style="display: inline-flex">
-          <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-top: 80px; margin-left: 5px">
-          <h1 style="color: black; margin-top: 80px; margin-left: 5px">{{ customer.address}}</h1>
+  <div [ngSwitch]="containerToBeLoaded">
+    <ng-template [ngSwitchCase]="'cardView'">
+      <div style="width: 1200px; position: absolute; left: 20%; margin-top: 300px; display: grid; grid-template-columns: auto auto auto; grid-row-gap: 20px">
+        <ng-container *ngFor="let customer of customers.customers">
+          <div style="width: 300px; height: 200px; border-style: solid; border-color: black; overflow: scroll" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+            <div style="background-color: blue; width: 300px; height: 60px; position: absolute">
+              <h1 style="color: white; margin-top: 10px; margin-left: 5px">{{ customer.first_name}} {{ customer.last_name}}</h1>
+            </div>
+            <div style="display: inline-flex">
+              <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-top: 80px; margin-left: 5px">
+              <h1 style="color: black; margin-top: 80px; margin-left: 5px">{{ customer.address}}</h1>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'listView'">
+      <div style="width: 1200px; position: absolute; left: 18%; margin-top: 275px; display: grid;">
+        <table class="CustomerPageTable">
+          <tr>
+            <th style="width: 150px; height: 50px; background-color: blue"></th>
+            <th style="font-size: 18px; background-color: blue; color: white; height: 50px">FIRST NAME</th>
+            <th style="font-size: 18px; background-color: blue; color: white; height: 50px">LAST NAME</th>
+            <th style="font-size: 18px; background-color: blue; color: white; height: 50px">ADDRESS</th>
+          </tr>
+          <tr *ngFor="let customer of customers.customers">
+            <td [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">
+              <img src="https://www.pinclipart.com/picdir/big/371-3712002_png-file-svg-person-icon-black-png-clipart.png" style="height: 100px; margin-left: 12px; margin-top: 2px">
+            </td>
+            <td style="text-align: center; font-size: 24px; font-weight: bold; color: black"  [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.first_name }}</td>
+            <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.last_name }}</td>
+            <td style="text-align: center; font-size: 24px; font-weight: bold; color: black" [style.background-color]="customer.gender === 'female' ? 'lightcoral': 'lightblue'">{{ customer.address}}</td>
+          </tr>
+        </table>
+      </div>
+    </ng-template>      
+
+    <ng-template [ngSwitchCase]="'newCustomer'">
+      <div style="width: 1200px; position: absolute; left: 18%; margin-top: 275px; display: grid;">
+        <div style="background-color: blue; width: 80%; height: auto; margin: auto">
+          <form [formGroup]="newCustomerForm" (ngSubmit)="onSubmit()">
+
+            <div style="display: inline-flex; width: 500px; margin-left: 230px">
+              <div style="width: 300px; margin-top: 0px">
+                <h1 style="text-align: center; color: white">First Name:</h1>
+              </div>
+              <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="firstName" maxlength="5">
+              <br />
+            </div>
+            <span *ngIf="!newCustomerForm.get('firstName').valid && newCustomerFormSubmitted" 
+            style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input First Name.</span>
+            
+            <div style="display: inline-flex; width: 500px; margin-left: 230px">
+              <div style="width: 300px">
+                <h1 style="text-align: center; color: white">Last Name:</h1>
+              </div>
+              <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="lastName" maxlength="5">
+            </div>
+            <span *ngIf="!newCustomerForm.get('lastName').valid && newCustomerFormSubmitted" 
+            style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Last Name.</span>
+
+            <div style="display: inline-flex; width: 500px; margin-left: 230px">
+              <div style="width: 300px">
+                <h1 style="text-align: center; color: white">Address:</h1>
+              </div>
+              <input type="text" style="width: 500px; height: 40px; margin-top: 20px" formControlName="address" maxlength="20">
+            </div>
+            <span *ngIf="!newCustomerForm.get('address').valid && newCustomerFormSubmitted" 
+            style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly input Address.</span>
+
+            <div style="display: inline-flex; width: 500px; margin-left: 280px">
+              <h1 style="text-align: center; color: white">Gender:</h1>
+              <div style="display: inline-flex; width: 350px; margin-top: 10px">
+                <input type="radio" style="width: 500px; height: 50px" value="male" formControlName="gender" />
+                <h1 style="color: white; margin-top: 10px">Male</h1>        
+                <input type="radio" style="width: 500px; height: 50px" value="female" formControlName="gender" />  
+                <h1 style="color: white; margin-top: 10px">Female</h1>        
+              </div>
+            </div>
+            <span *ngIf="!newCustomerForm.get('gender').valid && newCustomerFormSubmitted" 
+            style="margin-left: 410px; color: white; font-size: 24px; font-style: italic; font-weight: bold">* Kindly select Gender.</span>
+
+            <br/>
+            <br/>
+            <button style="margin-left: 300px; width: 400px; height: 50px; font-size: 24px; font-weight: bold; margin-bottom: 20px" type="submit">SUBMIT</button>
+          </form>
         </div>
       </div>
-    </ng-container>
+    </ng-template>
   </div>
-
 </div>
