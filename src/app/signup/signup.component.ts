@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppService } from '../app.service';
 
 import membersJSONFile from '../../json/members.json';
 
@@ -14,7 +15,8 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   constructor(private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private service: AppService) { }
 
   ngOnInit() {
     this.initForm();
@@ -76,6 +78,9 @@ export class SignupComponent implements OnInit {
           members.members.push(memberJSON);
           window.sessionStorage.setItem('members', JSON.stringify(members));
           this.signupForm.reset();
+
+          //Set isAuthenticated to true
+          this.service.isAuthenticated.next(true);
           this.router.navigate(['../customer-page'], {relativeTo: this.route})
         }
         else {

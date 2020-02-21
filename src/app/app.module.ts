@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { SignupComponent } from './signup/signup.component';
+import { AppService } from './app.service';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -22,6 +23,9 @@ import { SignupComponent } from './signup/signup.component';
                   LoginComponent,
                   CustomerPageComponent,
                   SignupComponent],
+  providers: [
+              AppService
+  ],
   exports: [ RouterModule ],
   bootstrap:    [ AppComponent ]
 })

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs'
+import { AppService } from '../app.service';
 
 import customers from '../../json/customers.json';
 
@@ -9,7 +11,7 @@ import customers from '../../json/customers.json';
   templateUrl: './customer-page.component.html',
   styleUrls: ['./customer-page.component.css']
 })
-export class CustomerPageComponent implements OnInit {
+export class CustomerPageComponent implements OnInit, OnDestroy {
 
   customers = customers;
   containerToBeLoaded: string;
@@ -18,11 +20,18 @@ export class CustomerPageComponent implements OnInit {
   editCustomerForm: FormGroup;
   indexToBeUpdated = null;
   editCustomerFormSubmitted: boolean = false;
+  isAuthenticatedSubject: Subscription;
+  userIsLoggedIn: boolean = false;
 
   constructor(private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private service: AppService) { }
 
   ngOnInit() {
+    this.isAuthenticatedSubject = this.service.isAuthenticated
+    .subscribe(isAuthenticated => this.userIsLoggedIn = isAuthenticated);
+    console.log(this.userIsLoggedIn);
+
     if(window.sessionStorage.getItem('customers') === null) {
       window.sessionStorage.setItem('customers', JSON.stringify(customers));
     }
@@ -33,6 +42,10 @@ export class CustomerPageComponent implements OnInit {
 
     this.containerToBeLoaded = 'cardView';
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.isAuthenticatedSubject.unsubscribe();
   }
 
   goToCustomersPage() {
@@ -193,5 +206,10 @@ export class CustomerPageComponent implements OnInit {
     else {
       return;
     }
+  }
+
+  goToCustomerPage() {
+    this.containerToBeLoaded = 'cardView';
+    this.router.navigate(['../customer-page'], {relativeTo: this.route});
   }
 }

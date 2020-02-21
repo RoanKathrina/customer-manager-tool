@@ -1,7 +1,10 @@
 <div class="LoginPage">
   <div class="LoginPageDiv">
-    <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' style='height: 150px'>
-    <h1 style="color: white">Customer Manager Tool</h1>
+    <div style="display: inline-block">
+      <img src='https://www.pinclipart.com/picdir/big/404-4045342_customers-for-your-business-animated-people-transparent-background.png' style='height: 150px'>
+      <h1 style="color: white; margin-top: 0px">Customer Manager Tool</h1>
+      <br />
+    </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <label class="LoginPageLabel">Username:</label>
       <br/>

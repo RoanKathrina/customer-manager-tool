@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppService } from '../app.service';
 
 import membersJSONFile from '../../json/members.json';
 
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
   constructor(private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private service: AppService) {}
 
   ngOnInit() {
     this.initForm();
@@ -57,6 +59,9 @@ export class LoginComponent implements OnInit{
     }
     else {
       this.loginForm.reset();
+
+      // Set the isAuthenticated = true;
+      this.service.isAuthenticated.next(true);
       this.router.navigate(['../customer-page'], {relativeTo: this.route})
     }
   }
